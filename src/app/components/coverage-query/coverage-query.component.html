@@ -1,7 +1,7 @@
 <div class="container">
     <div class="row">
         <div class="col form-group">
-            <label for="region">Region:</label>
+            <label for="region"><span class="informative"><b>Region:</b></span></label>
             <select class="form-control" name="regiones" (change)="llenarComunas($event.target.value)">
                 <option hidden [value]=""  selected>Seleccione una region</option>
                 <option *ngFor ="let region of regiones" [value]="region.code">{{region.name}}</option>
@@ -10,7 +10,7 @@
     </div>
     <div class="row">
         <div class="col form-group">
-            <label for="comuna">Comuna:</label>
+            <label for="comuna"><span class="informative"><b>Comuna:</b></span></label>
             <select class="form-control" name="comunas" [disabled]="!regionEstablecida" (change)="setComuna($event.target.value)">
                 <option hidden [value]="" [selected]="!regionEstablecida">
                     <span *ngIf="!regionEstablecida; else countyPlaceholder">Primero seleccione una region</span>

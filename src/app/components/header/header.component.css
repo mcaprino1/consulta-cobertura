@@ -1,0 +1,8 @@
+.page-header { 
+    /*background: url('../../../assets/images/backgrounds/img_background_1440px-min.png') no-repeat center fixed; min-height: 360px;*/
+    background: url('../../../assets/images/backgrounds/img_background_1440px-min.png') no-repeat; min-height: 360px;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
