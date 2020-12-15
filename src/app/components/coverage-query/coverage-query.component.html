@@ -5,24 +5,29 @@
         </div>
     </div>
     <div class="row">
-        <div class="col">
-            <label for="region">Region</label>
-            <select name="regiones">
-                <option *ngFor="let region of regiones" [value]="region.code">{{region.name}}</option>
+        <div class="col form-group">
+            <label for="region">Region:</label>
+            <select class="form-control" name="regiones" (change)="populateCounties($event.target.value)">
+                <option hidden [value]=""  selected>Seleccione una region</option>
+                <option *ngFor ="let region of regiones" [value]="region.code">{{region.name}}</option>
             </select>
         </div>
     </div>
     <div class="row">
-        <div class="col">
-            <label for="comuna">Comuna</label>
-            <select name="comunas">
+        <div class="col form-group">
+            <label for="comuna">Comuna:</label>
+            <select class="form-control" name="comunas" [disabled]="!regionSelected">
+                <option id="placeholder-option" hidden [value]="" [selected]="!regionSelected">
+                    <span *ngIf="!regionSelected; else countyPlaceholder">Primero seleccione una region</span>
+                </option>
+                <ng-template #countyPlaceholder>Seleccione una comuna</ng-template>
                 <option *ngFor="let comuna of comunas" [value]="comuna.code">{{comuna.name}}</option>
             </select>
         </div>
     </div>
     <div class="row">
         <div class="col">
-            <div class="btn">Consultar</div>
+            <button class="btn btn-primary">Consultar</button>
         </div>
     </div>
 </div>
