@@ -6,6 +6,7 @@ import { ActivatedRoute } from '@angular/router';
   templateUrl: './coverage-result.component.html',
   styleUrls: ['./coverage-result.component.css']
 })
+
 export class CoverageResultComponent implements OnInit {
 
   cobertura: boolean;

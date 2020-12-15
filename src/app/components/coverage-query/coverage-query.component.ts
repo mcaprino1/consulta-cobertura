@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { RegionModel } from 'src/app/models/region.model'
 import { CountyModel } from 'src/app/models/county.model'
 import { CoverageService } from 'src/app/services/coverage/coverage-service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-coverage-query',
@@ -15,7 +16,8 @@ export class CoverageQueryComponent implements OnInit {
   chosenCountyCode: string;
 
   constructor(
-    private service: CoverageService
+    private service: CoverageService,
+    private router: Router
   ) { }
 
   llenarComunas(selectedRegion: string): void {
@@ -32,6 +34,7 @@ export class CoverageQueryComponent implements OnInit {
   consultar(): void {
     const tieneCobertura = this.service.validarComuna(this.chosenCountyCode);
     console.log((!tieneCobertura ? 'NO ' : '') + 'tiene cobertura');
+    this.router.navigateByUrl('/resultado-cobertura?cobertura='+tieneCobertura);
   }
 
   ngOnInit(): void {
