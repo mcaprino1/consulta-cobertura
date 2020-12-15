@@ -43,6 +43,7 @@ export class CoverageQueryComponent implements OnInit {
 
   ngOnInit(): void {
     this.regionEstablecida = false;
+    this.comunaElegida = null;
     this.regiones = new Array<RegionModel>();
     this.service.obtenerRegiones()
     .then(

@@ -22,7 +22,7 @@
     </div>
     <div class="row">
         <div class="col-lg-6 col-sm-8 col-xs-10 form-group">
-            <button class="btn btn-primary" (click)="consultar()">Consultar</button>
+            <button class="btn btn-primary" (click)="consultar()" [disabled]="!comunaElegida">Consultar</button>
         </div>
     </div>
 </div>
