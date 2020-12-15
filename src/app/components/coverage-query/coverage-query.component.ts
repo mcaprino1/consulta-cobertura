@@ -12,12 +12,13 @@ export class CoverageQueryComponent implements OnInit {
   regiones: Array<RegionModel>;
   comunas: Array<CountyModel>;
   regionSelected: boolean;
+  chosenCountyCode: string;
 
   constructor(
     private service: CoverageService
   ) { }
 
-  populateCounties(selectedRegion: string): void {
+  llenarComunas(selectedRegion: string): void {
     console.log('retrieving selected region option: ' + selectedRegion);
     this.regionSelected = true;    
     this.comunas = new Array<CountyModel>();
@@ -26,6 +27,11 @@ export class CoverageQueryComponent implements OnInit {
       (data) => data.coverageAreas.forEach(
         r => this.comunas.push(new CountyModel(r.countyCode, r.coverageName, r.ineCountyCode, r.regionCode))
     ));
+  }
+
+  consultar(): void {
+    const tieneCobertura = this.service.validarComuna(this.chosenCountyCode);
+    console.log((!tieneCobertura ? 'NO ' : '') + 'tiene cobertura');
   }
 
   ngOnInit(): void {

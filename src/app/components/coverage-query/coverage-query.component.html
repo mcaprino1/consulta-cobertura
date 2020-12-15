@@ -7,7 +7,7 @@
     <div class="row">
         <div class="col form-group">
             <label for="region">Region:</label>
-            <select class="form-control" name="regiones" (change)="populateCounties($event.target.value)">
+            <select class="form-control" name="regiones" (change)="llenarComunas($event.target.value)">
                 <option hidden [value]=""  selected>Seleccione una region</option>
                 <option *ngFor ="let region of regiones" [value]="region.code">{{region.name}}</option>
             </select>
@@ -16,7 +16,7 @@
     <div class="row">
         <div class="col form-group">
             <label for="comuna">Comuna:</label>
-            <select class="form-control" name="comunas" [disabled]="!regionSelected">
+            <select class="form-control" name="comunas" [disabled]="!regionSelected" [(ngModel)]="chosenCountyCode">
                 <option id="placeholder-option" hidden [value]="" [selected]="!regionSelected">
                     <span *ngIf="!regionSelected; else countyPlaceholder">Primero seleccione una region</span>
                 </option>
@@ -27,7 +27,7 @@
     </div>
     <div class="row">
         <div class="col">
-            <button class="btn btn-primary">Consultar</button>
+            <button class="btn btn-primary" (click)="consultar()">Consultar</button>
         </div>
     </div>
 </div>

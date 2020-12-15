@@ -66,9 +66,6 @@ export class CoverageService {
   }
 
   validarComuna = (codigoComuna: string) => {
-    if(codigoComuna in NOT_AVAILABLE_COUNTIES){
-      return false;
-    }
-    return true;
+    return NOT_AVAILABLE_COUNTIES.includes(codigoComuna) ? false : true;
   }
 }
