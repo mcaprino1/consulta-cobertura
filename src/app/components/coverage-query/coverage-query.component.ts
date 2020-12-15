@@ -12,33 +12,37 @@ import { Router } from '@angular/router';
 export class CoverageQueryComponent implements OnInit {
   regiones: Array<RegionModel>;
   comunas: Array<CountyModel>;
-  regionSelected: boolean;
-  chosenCountyCode: string;
+  regionEstablecida: boolean;
+  comunaElegida: string;
 
   constructor(
     private service: CoverageService,
     private router: Router
   ) { }
 
-  llenarComunas(selectedRegion: string): void {
-    console.log('retrieving selected region option: ' + selectedRegion);
-    this.regionSelected = true;    
+  llenarComunas(region: string): void {
+    console.log('retrieving selected region option: ' + region);
+    this.regionEstablecida = true;
     this.comunas = new Array<CountyModel>();
-    this.service.obtenerComunas(selectedRegion)
+    this.service.obtenerComunas(region)
     .then(
       (data) => data.coverageAreas.forEach(
-        r => this.comunas.push(new CountyModel(r.countyCode, r.coverageName, r.ineCountyCode, r.regionCode))
+        c => this.comunas.push(new CountyModel(c.countyCode, c.coverageName, c.ineCountyCode, c.regionCode))
     ));
   }
 
+  setComuna(comuna: string): void {
+    this.comunaElegida = comuna;
+  }
+
   consultar(): void {
-    const tieneCobertura = this.service.validarComuna(this.chosenCountyCode);
+    const tieneCobertura = this.service.validarComuna(this.comunaElegida);
     console.log((!tieneCobertura ? 'NO ' : '') + 'tiene cobertura');
-    this.router.navigateByUrl('/resultado-cobertura?cobertura='+tieneCobertura);
+    this.router.navigateByUrl('/resultado-cobertura?cobertura=' + tieneCobertura);
   }
 
   ngOnInit(): void {
-    this.regionSelected = false;
+    this.regionEstablecida = false;
     this.regiones = new Array<RegionModel>();
     this.service.obtenerRegiones()
     .then(

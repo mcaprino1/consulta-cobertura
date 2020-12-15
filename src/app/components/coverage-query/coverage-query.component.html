@@ -16,9 +16,9 @@
     <div class="row">
         <div class="col form-group">
             <label for="comuna">Comuna:</label>
-            <select class="form-control" name="comunas" [disabled]="!regionSelected" [(ngModel)]="chosenCountyCode">
-                <option id="placeholder-option" hidden [value]="" [selected]="!regionSelected">
-                    <span *ngIf="!regionSelected; else countyPlaceholder">Primero seleccione una region</span>
+            <select class="form-control" name="comunas" [disabled]="!regionEstablecida" (change)="setComuna($event.target.value)">
+                <option hidden [value]="" [selected]="!regionEstablecida">
+                    <span *ngIf="!regionEstablecida; else countyPlaceholder">Primero seleccione una region</span>
                 </option>
                 <ng-template #countyPlaceholder>Seleccione una comuna</ng-template>
                 <option *ngFor="let comuna of comunas" [value]="comuna.code">{{comuna.name}}</option>
