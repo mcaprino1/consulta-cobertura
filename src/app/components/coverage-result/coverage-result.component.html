@@ -1,18 +1,19 @@
-<div class="container">
-    <div class="row">
-        <div class="col">
-            IMG_HERE
+<div class="jumbotron">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 col-sm-8 col-xs-10">
+                <img src="../../../assets/images/{{imageName}}" alt="result image" />
+            </div>
         </div>
-    </div>
-    <div class="row">
-        <div class="col">
-            <p>RESULTADO: </p>
-            <span> {{cobertura}}</span>
+        <div class="row">
+            <div class="col-lg-6 col-sm-8 col-xs-10">
+                <p>{{ message }}</p>
+            </div>
         </div>
-    </div>
-    <div class="row">
-        <div class="col">
-            <a class="btn btn-primary" role="button" [routerLink]="['/']">Aceptar</a>
+        <div class="row">
+            <div class="col-lg-6 col-sm-8 col-xs-10">
+                <a class="btn btn-primary" role="button" [routerLink]="['/']">Aceptar</a>
+            </div>
         </div>
     </div>
 </div>

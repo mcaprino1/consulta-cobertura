@@ -1,28 +1,30 @@
-<div class="container-fluid content-center">
-    <div class="row">
-        <div class="col-lg-6 col-sm-8 col-xs-10 form-group">
-            <label for="region"><span class="informative"><b>Region:</b></span></label>
-            <select class="form-control" name="regiones" (change)="llenarComunas($event.target.value)">
-                <option hidden [value]=""  selected>Seleccione una region</option>
-                <option *ngFor ="let region of regiones" [value]="region.code">{{region.name}}</option>
-            </select>
+<div class="jumbotron">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 col-sm-8 col-xs-10 form-group">
+                <label for="region"><span class="informative"><b>Region:</b></span></label>
+                <select class="form-control" name="regiones" (change)="llenarComunas($event.target.value)">
+                    <option hidden [value]=""  selected>Seleccione una region</option>
+                    <option *ngFor ="let region of regiones" [value]="region.code">{{region.name}}</option>
+                </select>
+            </div>
         </div>
-    </div>
-    <div class="row">
-        <div class="col-lg-6 col-sm-8 col-xs-10 form-group">
-            <label for="comuna"><span class="informative"><b>Comuna:</b></span></label>
-            <select class="form-control" name="comunas" [disabled]="!regionEstablecida" (change)="setComuna($event.target.value)">
-                <option hidden [value]="" [selected]="!regionEstablecida">
-                    <span *ngIf="!regionEstablecida; else countyPlaceholder">Primero seleccione una region</span>
-                </option>
-                <ng-template #countyPlaceholder>Seleccione una comuna</ng-template>
-                <option *ngFor="let comuna of comunas" [value]="comuna.code">{{comuna.name}}</option>
-            </select>
+        <div class="row">
+            <div class="col-lg-6 col-sm-8 col-xs-10 form-group">
+                <label for="comuna"><span class="informative"><b>Comuna:</b></span></label>
+                <select class="form-control" name="comunas" [disabled]="!regionEstablecida" (change)="setComuna($event.target.value)">
+                    <option hidden [value]="" [selected]="!regionEstablecida">
+                        <span *ngIf="!regionEstablecida; else countyPlaceholder">Primero seleccione una region</span>
+                    </option>
+                    <ng-template #countyPlaceholder>Seleccione una comuna</ng-template>
+                    <option *ngFor="let comuna of comunas" [value]="comuna.code">{{comuna.name}}</option>
+                </select>
+            </div>
         </div>
-    </div>
-    <div class="row">
-        <div class="col-lg-6 col-sm-8 col-xs-10 form-group">
-            <button class="btn btn-primary" (click)="consultar()" [disabled]="!comunaElegida">Consultar</button>
+        <div class="row">
+            <div class="col-lg-6 col-sm-8 col-xs-10 form-group">
+                <button class="btn btn-primary" (click)="consultar()" [disabled]="!comunaElegida">Consultar</button>
+            </div>
         </div>
     </div>
 </div>
