@@ -44,8 +44,8 @@ export class CoverageService {
       let params = new HttpParams();
       
       headers.append('Content-Type', 'application/json; charset=utf-8');
-      params.set('RegionCode', codigoRegion);
-      params.set('type', '1');
+      params = params.set('RegionCode', codigoRegion);
+      params = params.set('type', '1');
 
       this.http
         .get(SERVICE_URL + COUNTIES_ENDPOINT, {headers, params})
